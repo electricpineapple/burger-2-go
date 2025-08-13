@@ -6,7 +6,7 @@ import Ingredients from './Ingredients.tsx'
 import Complete from './Complete.tsx'
 
 createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
             <Route index element={<App />} />
             <Route path="ingredients" element={<Ingredients />} />

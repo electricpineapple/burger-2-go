@@ -5,5 +5,5 @@ const base = process.env.VITE_APP_BASE || '/'
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react()],
-    base
+    base,
 })

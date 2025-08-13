@@ -1,26 +1,24 @@
+import { useNavigate } from 'react-router';
 import './App.css'
-import { usePopularity } from './firebase';
+import building from './assets/building.png'
 
 function App() {
-    const { data: popularity, loading, error } = usePopularity();
-    const mostPopular = popularity.reduce((max, current) =>
-        current.count > max.count ? current : max
-        , popularity[0]);
-    if (loading) return <p>Loading cities...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    const navigate = useNavigate();
+
+    const goToIngredients = () => {
+        navigate('/ingredients');
+    };
 
     return (
-        <div>
-            <ul>
-                {popularity.map((popularity) => (
-                    <li key={popularity.id}>
-                        {popularity.id} – count: {popularity.count}
-                    </li>
-                ))}
-            </ul>
-            <p>The most popular ingredient is {mostPopular.id}</p>
-        </div>
-    )
+        <>
+            <div>
+                <img src={building} alt="Building" />
+                <h1>Burgers-2-Go!</h1>
+                <p>Providing you with the finest dining you can have between two buns, since 1981.</p>
+                <button onClick={goToIngredients}>Place Order</button>
+            </div>
+        </>
+    );
 }
 
 export default App

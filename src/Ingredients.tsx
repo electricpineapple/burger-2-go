@@ -1,10 +1,15 @@
-import { NavLink } from "react-router";
 import BurgerToggles from "./BurgerToggles";
 import { useContext } from "react";
 import { OrderContext } from "./OrderContext";
+import { useNavigate } from "react-router";
 
 export default function Ingredients() {
     const orderValue = useContext(OrderContext)
+    const navigate = useNavigate();
+    const submitOrder = () => {
+        //send the order
+        navigate('/complete');
+    };
 
     return (
         <div className="ingredients-screen">
@@ -19,8 +24,8 @@ export default function Ingredients() {
             />
             <p>When you are done selecting ingredient choices, proceed to complete your order below.</p>
             <div className="button-box">
-                <NavLink to="/complete" className="cta-button">Complete My Order</NavLink>
-                <NavLink to="/complete" className="secondary-button">Just an Empty Bun Please</NavLink>
+                <button onClick={submitOrder} className="cta-button" disabled={orderValue.order.ingredients.length <= 0}>Complete My Order</button>
+                <button onClick={submitOrder} className="secondary-button" disabled={orderValue.order.ingredients.length > 0}>Just an Empty Bun Please</button>
             </div>
         </div>
     );

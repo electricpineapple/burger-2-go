@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router';
-import './App.css'
 import building from './assets/building.png'
 
 function App() {

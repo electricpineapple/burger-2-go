@@ -177,9 +177,10 @@ button:disabled {
 }
 
 .burger-stack img {
-    margin-top: -60px;
+    margin-top: -70px;
 }
 
 .burger-stack img:first-child {
     margin-top: 0;
+    margin-bottom: 20px;
 }

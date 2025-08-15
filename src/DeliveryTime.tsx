@@ -10,7 +10,7 @@ export function DeliveryTime({ itemCount }: Props) {
     const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     return (
-        <div>
+        <div className="delivery-time">
             <h2>Estimated Delivery Time:</h2>
             <p>{time}</p>
         </div>

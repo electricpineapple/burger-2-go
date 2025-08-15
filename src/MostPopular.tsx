@@ -36,7 +36,7 @@ export function MostPopularIngredient({ db }: Props) {
     if (!mostPopular) return null;
 
     return (
-        <div>
+        <div className="most-popular">
             <h2>Fun Fact:</h2>
             <p>The most popular ingredient is {mostPopular.id}.</p>
         </div>

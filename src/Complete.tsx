@@ -19,7 +19,7 @@ export default function Complete() {
     };
 
     return (
-        <div>
+        <div className="complete-screen">
             <h1>Your Order is Being Made</h1>
             <p>Our culinary artists are hard at work crafting your custom sandwich.</p>
             <DeliveryTime itemCount={orderValue.order.ingredients.length} />

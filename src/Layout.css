@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+p {
+    font-size: 11pt;
+}
+
 .burger-section {
     margin-block: 1rem;
 }
@@ -157,6 +161,10 @@ button:disabled {
     display: block;
 }
 
+.start-screen p {
+    margin-bottom: 80px;
+}
+
 @media (max-height: 700px),
 (max-width: 768px) {
     .start-screen .button-box {
@@ -170,6 +178,14 @@ button:disabled {
 }
 
 .start-screen h1 {
+    font-family: "Darumadrop One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 36pt;
+    margin-bottom: 80px;
+}
+
+.start-screen {
     text-align: center;
 }
 
@@ -186,4 +202,23 @@ button:disabled {
 .burger-stack img:first-child {
     margin-top: 0;
     margin-bottom: 20px;
+}
+
+.most-popular h2,
+.delivery-time h2,
+.complete-screen h1 {
+    margin-bottom: 0;
+}
+
+.complete-screen p {
+    margin-top: 10px;
+}
+
+.most-popular p,
+.delivery-time p {
+    margin-top: 0;
+}
+
+.complete-screen .button-box {
+    margin-top: 50px;
 }

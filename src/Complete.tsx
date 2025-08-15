@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { db } from './firebase';
 import { MostPopularIngredient } from "./MostPopular";
 import { useContext } from "react";
 import { OrderContext } from "./OrderContext";

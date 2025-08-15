@@ -38,9 +38,11 @@
     color: #fff;
 }
 
-.burger-toggle:hover {
-    background: #A03C34;
-    color: #000;
+@media (hover: hover) and (pointer: fine) {
+    .burger-toggle:hover {
+        background: #A03C34;
+        color: #000;
+    }
 }
 
 .burger-icon {
@@ -146,6 +148,7 @@ button:disabled {
 
 .back-button {
     padding-left: 0;
+    color: #000;
 }
 
 .header-image {

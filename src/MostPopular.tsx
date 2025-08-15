@@ -21,6 +21,8 @@ export function MostPopularIngredient({ ingredients }: Props) {
 
     useEffect(() => {
         (async () => {
+            //write should probably only happen on unique order and ingredients,
+            //if order is updated after submitting, should probably add/subtract ingredients
             ingredients.forEach(ing => {
                 const updatesRef = doc(db, 'popularity', ing.id)
                 batch.update(updatesRef, { count: increment(1) })

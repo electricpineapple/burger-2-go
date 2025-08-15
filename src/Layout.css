@@ -169,3 +169,17 @@ button:disabled {
 .start-screen h1 {
     text-align: center;
 }
+
+.burger-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.burger-stack img {
+    margin-top: -60px;
+}
+
+.burger-stack img:first-child {
+    margin-top: 0;
+}

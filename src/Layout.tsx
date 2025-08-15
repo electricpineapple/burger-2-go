@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Outlet, useNavigate, useMatch } from "react-router";
 import { OrderContext } from "./OrderContext";
 import './Layout.css'
+import type { Ingredient } from "./IngredientsModel";
 
 export interface Order {
-    ingredients: string[];
+    ingredients: Ingredient[];
     id: string | undefined;
 }
 

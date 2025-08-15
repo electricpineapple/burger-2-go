@@ -2,8 +2,8 @@ import { useMemo, useState } from "react";
 import { INGREDIENTS, type Category, type Ingredient } from "./IngredientsModel";
 
 type Props = {
-    initialSelectedIds?: string[];
-    onChange?: (selectedIds: string[]) => void;
+    initialSelectedIds?: Ingredient[];
+    onChange?: (selectedIds: Ingredient[]) => void;
     order?: Category[];
 };
 
@@ -12,7 +12,7 @@ export default function BurgerToggles({
     onChange,
     order = ["Proteins", "Vegetables", "Cheeses", "Toppings & Spreads", "Condiments"],
 }: Props) {
-    const [selected, setSelected] = useState<Set<string>>(
+    const [selected, setSelected] = useState<Set<Ingredient>>(
         () => new Set(initialSelectedIds)
     );
 
@@ -28,10 +28,10 @@ export default function BurgerToggles({
         return map;
     }, []);
 
-    const toggle = (id: string) => {
+    const toggle = (ing: Ingredient) => {
         setSelected((prev) => {
             const next = new Set(prev);
-            next.has(id) ? next.delete(id) : next.add(id);
+            next.has(ing) ? next.delete(ing) : next.add(ing);
 
             if (onChange) {
                 const ids = Array.from(next);
@@ -52,14 +52,14 @@ export default function BurgerToggles({
                         <h4 className="burger-section__title">{cat}</h4>
                         <div className="burger-list">
                             {items.map((ing) => {
-                                const active = selected.has(ing.id);
+                                const active = selected.has(ing);
                                 return (
                                     <button
                                         key={ing.id}
                                         type="button"
                                         className={`burger-toggle ${active ? "is-active" : ""}`}
                                         aria-pressed={active}
-                                        onClick={() => toggle(ing.id)}
+                                        onClick={() => toggle(ing)}
                                     >
                                         {ing.icon && <img src={ing.icon} className="burger-icon" aria-hidden="true" />}
                                         {ing.name}

@@ -24,7 +24,7 @@ export default function Complete() {
             <p>Our culinary artists are hard at work crafting your custom sandwich.</p>
             <DeliveryTime itemCount={orderValue.order.ingredients.length} />
             <BurgerStack ingredients={orderValue.order.ingredients} />
-            <MostPopularIngredient db={db} />
+            <MostPopularIngredient ingredients={orderValue.order.ingredients} />
             <div className="button-box">
                 <button onClick={clearAndStart} className="cta-button">Start a New Order</button>
             </div>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Firestore, collection, getDocs } from 'firebase/firestore/lite';
+import { collection, doc, getDocs, increment, writeBatch } from 'firebase/firestore/lite';
+import { db } from './firebase';
+import type { Ingredient } from './IngredientsModel';
 
 interface Popularity {
     count: number;
@@ -10,14 +12,21 @@ interface PopularityWithId extends Popularity {
 }
 
 interface Props {
-    db: Firestore;
+    ingredients: Ingredient[];
 }
 
-export function MostPopularIngredient({ db }: Props) {
+export function MostPopularIngredient({ ingredients }: Props) {
     const [mostPopular, setMostPopular] = useState<PopularityWithId | null>(null);
+    const batch = writeBatch(db);
 
     useEffect(() => {
         (async () => {
+            ingredients.forEach(ing => {
+                const updatesRef = doc(db, 'popularity', ing.id)
+                batch.update(updatesRef, { count: increment(1) })
+            })
+            batch.commit();
+
             const snapshot = await getDocs(collection(db, 'popularity'));
             const popularities: PopularityWithId[] = snapshot.docs.map(doc => ({
                 id: doc.id,

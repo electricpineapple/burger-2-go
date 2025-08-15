@@ -2,13 +2,34 @@ import BurgerToggles from "./BurgerToggles";
 import { useContext } from "react";
 import { OrderContext } from "./OrderContext";
 import { useNavigate } from "react-router";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore/lite";
+import { db } from './firebase';
 
 export default function Ingredients() {
     const orderValue = useContext(OrderContext)
     const navigate = useNavigate();
-    const submitOrder = () => {
-        //send the order
-        navigate('/complete');
+    const submitOrder = async () => {
+        try {
+            if (orderValue.order.id) {
+                await setDoc(doc(db, "orders", orderValue.order.id), {
+                    ingredients: orderValue.order.ingredients.map(ing => ing.id)
+                });
+            }
+            else {
+                const docRef = await addDoc(collection(db, "orders"), {
+                    ingredients: orderValue.order.ingredients.map(ing => ing.id)
+                })
+                orderValue.setOrder(prev => ({
+                    ...prev,
+                    id: docRef.id,
+                }))
+            }
+
+            navigate('/complete');
+        }
+        catch (e) {
+            console.error("Error submitting order:", e);
+        }
     };
 
     return (
